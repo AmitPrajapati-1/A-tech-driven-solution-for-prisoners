@@ -1,0 +1,57 @@
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #047eaa;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<center> <h1>Personal information</h1> </center>
+<br><br><hr><br>
+
+<table id="customers">
+  <tr>
+    <th>User Id</th>
+    <th>PrisonerName</th>
+    <th>FamilyMember</th>
+    <th>DurationforImprisonment</th>
+  </tr>
+  <tr>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.userid %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.PrisonerName %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.FamilyMember %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+       <%= item.DurationforImprisonment %>
+      <% }); %></td>
+  </tr>
+</table>
+
+</body>
+</html>

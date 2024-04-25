@@ -1,0 +1,5 @@
+[
+    {"userid":"1","username": "Auser1","usertype":"Admin","password": "password1"},
+    {"userid":"2","username": "Luser2","usertype":"Lawyer","password": "password2"},
+    {"userid":"3","username": "Puser3","usertype":"Prisoner","password": "password3"}
+]

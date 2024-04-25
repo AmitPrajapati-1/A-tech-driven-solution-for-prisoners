@@ -1,0 +1,67 @@
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #047eaa;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<center> <h1>Case Management System</h1> </center>
+<br><br><hr><br>
+
+<table id="customers">
+  <tr>
+    <th>User Id</th>
+    <th>Pertitioner Name</th>
+    <th>Responder Name</th>
+    <th>Advocate Name</th>
+    <th>Status</th>
+    <th>Next Date</th>
+  </tr>
+  <tr>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.userid %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.petitionerName %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.responderName %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+       <%= item.advocateName %>
+      <% }); %></td>
+    <td> <% data.forEach(function(item) { %>
+        <%= item.status %>
+      <% }); %></td>
+      <td>
+        <% data.forEach(function(item) { %>
+            <%= item.nextDate %>
+          <% }); %>
+      </td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call App</title>
+    <style>
+        #videosContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .videoWrapper {
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #f2f2f2; /* Background color for other users' video containers */
+        }
+
+        .videoWrapper video {
+            width: 300px; /* Width of other users' video containers */
+            height: 200px; /* Height of other users' video containers */
+        }
+
+        .localVideoWrapper {
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            background: none; /* No background color for the local user's video container */
+        }
+
+        .localVideoWrapper video {
+            width: 300px; /* Width of the local user's video container */
+            height: 200px; /* Height of the local user's video container */
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Call App</h1>
+    <div id="videosContainer">
+        <div id="localVideoWrapper" class="localVideoWrapper"></div>
+    </div>
+    <div id="controls">
+        <button id="toggleMic">Toggle Mic</button>
+        <button id="toggleCamera">Toggle Camera</button>
+        <button id="toggleScreen">Toggle Screen Sharing</button>
+    </div>
+
+    <script>
+        let localStream;
+        let localVideoElement;
+        let peerConnection;
+        let remoteStream;
+
+        async function startCamera() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                localVideoElement = document.createElement('video');
+                localVideoElement.srcObject = localStream;
+                localVideoElement.autoplay = true;
+                document.getElementById('localVideoWrapper').appendChild(localVideoElement);
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        }
+
+        async function toggleMic() {
+            if (localStream) {
+                const audioTracks = localStream.getAudioTracks();
+                audioTracks.forEach(track => {
+                    track.enabled = !track.enabled;
+                });
+            }
+        }
+
+        async function toggleCamera() {
+            if (localStream) {
+                const videoTracks = localStream.getVideoTracks();
+                videoTracks.forEach(track => {
+                    track.enabled = !track.enabled;
+                });
+            }
+        }
+
+        async function toggleScreenSharing() {
+            try {
+                const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                localVideoElement.srcObject = screenStream;
+            } catch (error) {
+                console.error('Error accessing screen:', error);
+            }
+        }
+
+        async function setupPeerConnection() {
+            peerConnection = new RTCPeerConnection();
+
+            localStream.getTracks().forEach(track => {
+                peerConnection.addTrack(track, localStream);
+            });
+
+            peerConnection.ontrack = event => {
+                remoteStream = event.streams[0];
+                const remoteVideoElement = document.createElement('video');
+                remoteVideoElement.srcObject = remoteStream;
+                remoteVideoElement.autoplay = true;
+                const videoWrapper = document.createElement('div');
+                videoWrapper.classList.add('videoWrapper');
+                videoWrapper.appendChild(remoteVideoElement);
+                document.getElementById('videosContainer').appendChild(videoWrapper);
+            };
+        }
+
+        async function setup() {
+            await startCamera();
+            setupPeerConnection();
+
+            document.getElementById('toggleMic').addEventListener('click', toggleMic);
+            document.getElementById('toggleCamera').addEventListener('click', toggleCamera);
+            document.getElementById('toggleScreen').addEventListener('click', toggleScreenSharing);
+        }
+
+        window.onload = setup;
+    </script>
+</body>
+</html>

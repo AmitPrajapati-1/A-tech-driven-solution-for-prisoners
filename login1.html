@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID Detection Form</title>
+<style>
+    body{
+      background-image: url("justice-photo.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+    }
+    #input{
+      border: none;
+      border-bottom: 2px solid rgb(2, 54, 13);
+      outline: none;
+      font-size: larger;
+      margin-left: 80px;background-color: rgb(147, 132, 116);
+    }
+    #input:hover{
+      border-bottom: 2px solid rgb(76, 28, 28);
+    }
+    #input1{
+      border: none;
+      border-bottom: 2px solid rgb(2, 54, 13);
+      outline: none;
+      font-size: larger;
+      margin-left: 80px;background-color: rgb(147, 132, 116);
+    }
+    #input1:hover{
+      border-bottom: 2px solid rgb(76, 28, 28);
+    }
+    #input2{
+      border: none;
+      border-bottom: 2px solid rgb(2, 54, 13);
+      outline: none;
+      font-size: larger;
+      background:transparent;
+      margin-left: 80px;
+    }
+    #input2:hover{
+      border-bottom: 2px solid rgb(76, 28, 28);
+    }
+    #button{
+        margin-left: 60px;
+        border-radius:20px;
+         height:40px;
+         width:80px;
+          font-size:medium;
+          background-color:lightblack;
+          width: 70%;;
+    }
+    #button:hover{
+      background-color: blueviolet;
+      color: burlywood;
+      border-color: black;
+    }
+    #for:hover{
+      color: red;
+    }
+</style>
+<script>
+    function detectRole() {
+        var idInput = document.getElementById('input1').value;
+        var role = '';
+
+        // Your detection logic here
+        if (idInput.startsWith('ID')) {
+            role = 'ID';
+        } else if (idInput.startsWith('A')) {
+            role = 'Admin';
+        } else if (idInput.startsWith('L')) {
+            role = 'Lawyer';
+        } else if (idInput.startsWith('P')) {
+            role = 'Prisoner';
+        } else {
+            role = 'Unknown'; // If none of the criteria match
+        }
+
+        document.getElementById('input2').value = role;
+    }
+    function rememberMe() {
+        var remember = document.getElementById('remember').checked;
+        var idInput = document.getElementById('input1').value;
+
+        if (remember) {
+            localStorage.setItem('rememberedId', idInput);
+        } else {
+            localStorage.removeItem('rememberedId');
+        }
+    }
+    window.onload = function() {
+        var rememberedId = localStorage.getItem('rememberedId');
+        if (rememberedId) {
+            document.getElementById('input1').value = rememberedId;
+            detectRole(); // Also detect the role if there's a remembered ID
+            document.getElementById('remember').checked = true;
+        }
+    };
+
+</script>
+</head>
+<body>
+    <div>
+        <form action="/submit1" style="background-color: rgb(147, 132, 116); width: 28%; border-radius: 10px; margin-left:550px; margin-top: 250px;" method="post"><br>
+          <h1 style="margin-left: 160px;">Login</h1>
+          <input type="text"  name="username" id="input1" placeholder="UserId" oninput="detectRole()" required><br><br>
+          <input type="text" name="usertype" id="input2" placeholder="UserType"><br><br>
+          <input type="password" name="password" id="input" placeholder="Password" required><br><br>
+          <input type="checkbox"style="margin-left: 80px;"  id="remember" onchange="rememberMe()">
+          <label for="" style="margin-left:-3px;">Remember me</label><pre style="display:inline;">  </pre>
+          <a href="" id="for">Forgot Password</a><br><br><br>
+          <button id="button" type="submit">Login</button>
+          <pre>  </pre>
+        </form>
+      </div>
+</body>
+</html>

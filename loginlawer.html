@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-image: url(justice-photo.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+    #input{
+      border: none;
+      border-bottom: 2px solid rgb(2, 54, 13);
+      outline: none;
+      font-size: larger;
+    }
+    #input:hover{
+      border-bottom: 2px solid rgb(76, 28, 28);
+    }
+    #input1{
+      border: none;
+      border-bottom: 2px solid rgb(2, 54, 13);
+      outline: none;
+      font-size: larger;
+    }
+    #input1:hover{
+      border-bottom: 2px solid rgb(76, 28, 28);
+    }
+    #button:hover{
+      background-color: blueviolet;
+      color: burlywood;
+      border-color: black;
+    }
+    #for:hover{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <form action="" style="background-color: rgb(147, 132, 116); width: 28%; border-radius: 10px; margin-left:550px; margin-top: 250px;"><br>
+      <h1 style="margin-left: 160px;">Login</h1>
+      <p id="role"></p>
+      <input type="text" id="input1" placeholder="UserId"style="margin-left: 80px;background-color: rgb(147, 132, 116);" oninput="detectRole()" required><br><br>
+      <input type="password" id="input" placeholder="Password"style="margin-left: 80px;background-color: rgb(147, 132, 116);" required><br><br>
+      <input type="checkbox"style="margin-left: 80px;">
+      <label for=""style="margin-left:-3px;">Remember me</label><pre style="display:inline;">  </pre>
+      <a href="" id="for">Forgot Password</a><br><br><br>
+      <button id="button" type="submit"style="margin-left: 150px;border-radius:20px; height:40px;width:80px; font-size:medium;background-color:lightblack">Login</button>
+      <pre>  </pre>
+    </form>
+  </div>
+  <script>
+    function detectRole() {
+        var idInput = document.getElementById('input1').value;
+        var role = '';
+
+        // Your detection logic here
+        if (idInput.startsWith('ID')) {
+            role = 'ID';
+        } else if (idInput.startsWith('admin')) {
+            role = 'Admin';
+        } else if (idInput.startsWith('lawyer')) {
+            role = 'Lawyer';
+        } else if (idInput.startsWith('prisoner')) {
+            role = 'Prisoner';
+        } else {
+            role = 'Unknown'; // If none of the criteria match
+        }
+
+        document.getElementById('role').value = role;
+    }
+  </script>
+</body>
+</html>

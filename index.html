@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Animation</title>
+  <style>
+    body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #2c3e50, #3498db);
+}
+
+#title {
+  font-family: 'Arial', sans-serif;
+  font-size: 3em;
+  color: #fff;
+  opacity: 0;
+}
+
+#subtitle {
+  font-family: 'Arial', sans-serif;
+  font-size: 2em;
+  color: #fff;
+  opacity: 0;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('cityscape.jpg');
+  background-size: cover;
+  animation: cityAnimation 10s infinite alternate;
+}
+
+@keyframes cityAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-10%);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color: #ffffff; font-size: 70px;">Welcome to our Website</h1>
+    <h2 style="color: #ffffff; font-size: 50px;">-ejustice</h2>
+    <button style="background-color: rgb(78, 76, 76); border-radius: 10px; font-size: x-large; ">
+        <a href="https://techprisonerjustice.azurewebsites.net/login" style="text-decoration: none; color: aqua;">cilck here go to main website</a></button>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Graphs</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Create canvases for each graph -->
+    <canvas id="highCourtGraph" width="100" height="15"></canvas>
+    <canvas id="supremeCourtGraph" width="100" height="15"></canvas>
+    <canvas id="districtCourtGraph" width="100" height="15"></canvas>
+    <canvas id="subordinateCourtGraph" width="100" height="15"></canvas>
+
+    <script>
+        // Data for the graphs
+        const highCourtData = {
+            labels: ['Cases Pending', 'Cases Resolved'],
+            datasets: [{
+                label: 'High Court (M)',
+                data: [50, 30],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const supremeCourtData = {
+            labels: ['Cases Pending', 'Cases Resolved'],
+            datasets: [{
+                label: 'Supreme Court(M)',
+                data: [30, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const districtCourtData = {
+            labels: ['Cases Pending', 'Cases Resolved'],
+            datasets: [{
+                label: 'District Court(M)',
+                data: [100, 70],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const subordinateCourtData = {
+            labels: ['Cases Pending', 'Cases Resolved'],
+            datasets: [{
+                label: 'Subordinate Court(M)',
+                data: [150, 100],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Options for all graphs
+        const options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        // Render the graphs
+        const highCourtCtx = document.getElementById('highCourtGraph').getContext('2d');
+        new Chart(highCourtCtx, {
+            type: 'bar',
+            data: highCourtData,
+            options: options
+        });
+
+        const supremeCourtCtx = document.getElementById('supremeCourtGraph').getContext('2d');
+        new Chart(supremeCourtCtx, {
+            type: 'bar',
+            data: supremeCourtData,
+            options: options
+        });
+
+        const districtCourtCtx = document.getElementById('districtCourtGraph').getContext('2d');
+        new Chart(districtCourtCtx, {
+            type: 'bar',
+            data: districtCourtData,
+            options: options
+        });
+
+        const subordinateCourtCtx = document.getElementById('subordinateCourtGraph').getContext('2d');
+        new Chart(subordinateCourtCtx, {
+            type: 'bar',
+            data: subordinateCourtData,
+            options: options
+        });
+    </script>
+</body>
+</html>

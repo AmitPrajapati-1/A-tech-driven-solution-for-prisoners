@@ -1,0 +1,5 @@
+{
+    "liveServer.settings.port": 5501,
+    "appService.defaultWebAppToDeploy": "/subscriptions/5e9532d4-69c7-43b9-867b-c5b054df60f2/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/PrisonerPortal",
+    "appService.deploySubpath": "."
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password</title>
+</head>
+<body>
+  <h1>Forgot Password</h1>
+  <form action="/reset-password" method="post">
+    <label for="userId">User ID:</label><br>
+    <input type="text" id="userId" name="userId" required><br><br>
+
+    <label for="securityQuestion">Security Question:</label><br>
+    <input type="text" id="securityQuestion" name="securityQuestion" required><br><br>
+
+    <label for="newPassword">New Password:</label><br>
+    <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+    <label for="confirmPassword">Confirm Password:</label><br>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+    <input type="submit" value="Reset Password">
+  </form>
+</body>
+</html>
